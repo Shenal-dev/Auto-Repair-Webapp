@@ -5,14 +5,14 @@ import java.util.Objects;
 
 public class JobPartId implements Serializable {
 
-    private Long job;      // Matches the name of the Job property in JobPart
-    private Long partId;   // Matches the name of the partId property in JobPart
+    private int job;      // Matches the name of the Job property in JobPart
+    private int sparePart;   // Matches the name of the partId property in JobPart
 
     public JobPartId() {}
 
-    public JobPartId(Long job, Long partId) {
+    public JobPartId(int job, int sparePart) {
         this.job = job;
-        this.partId = partId;
+        this.sparePart = sparePart;
     }
 
     // JPA requires equals() and hashCode() for composite keys
@@ -21,17 +21,17 @@ public class JobPartId implements Serializable {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         JobPartId that = (JobPartId) o;
-        return Objects.equals(job, that.job) && Objects.equals(partId, that.partId);
+        return Objects.equals(job, that.job) && Objects.equals(sparePart, that.sparePart);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(job, partId);
+        return Objects.hash(job, sparePart);
     }
 
     // Getters and Setters
-    public Long getJob() { return job; }
-    public void setJob(Long job) { this.job = job; }
-    public Long getPartId() { return partId; }
-    public void setPartId(Long partId) { this.partId = partId; }
+    public int getJob() { return job; }
+    public void setJob(int job) { this.job = job; }
+    public int getsparePart() { return sparePart; }
+    public void setPartId(int sparePart) { this.sparePart = sparePart; }
 }
