@@ -1,0 +1,82 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --navbar-bg: #03030a;
+    --background-color: #fafafa;
+    --accent-green: #04a13f;
+    --text-dark: #333333;
+    --text-gray: #666666;
+    --border-color: #eaeaea;
+    --card-bg: #ffffff;
+}
+
+body {
+    font-family: 'Inter', Arial, sans-serif;
+    background-color: var(--background-color);
+}
+
+/* == Nav bar == */
+nav.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: var(--navbar-bg);
+    padding: 20px 50px;
+    border-bottom: 1px solid var(--border-color);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.nav-menu {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 30px;
+    list-style: none;
+}
+
+.nav-menu a {
+    text-decoration: none;
+    color: #ffffff;
+    font-size: 16px;
+    transition: color 0.3s ease;
+}
+
+.nav-menu a:hover, .nav-menu a.active {
+    color: var(--accent-green);
+}
+
+.navlogo{
+    object-fit: contain;
+    border-radius: 5px;
+    width:auto;
+    height: 50px;
+}
+
+/* --- Cart icon  --- */
+.cart-container {
+    position: relative;
+    cursor: pointer;
+}
+
+.cart-icon {
+    color: #ffffff;
+    font-size: 24px;
+}
+
+.cart-badge {
+    position: absolute;
+    top: -8px;
+    right: -10px;
+    background-color: var(--accent-green);
+    color: #ffffff;
+    font-size: 12px;
+    font-weight: bold;
+    padding: 2px 6px;
+    border-radius: 50%;
+}
