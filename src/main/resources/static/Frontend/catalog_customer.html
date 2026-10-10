@@ -29,6 +29,126 @@
 
 <!-- Main content area-->
 
+<!-- cat_filters-->
+<div class = "header">
+    <div class = "filter-section">
+        <button class="filter-btn active" data-filter="all">All Parts</button>
+        <button class="filter-btn" data-filter="Engine Part">Engine</button>
+        <button class="filter-btn" data-filter="Brake Part">Brakes</button>
+        <button class="filter-btn" data-filter="Chassis Part">Chassis</button>
+        <button class="filter-btn" data-filter="Interior Part">Interior</button>
+        <button class="filter-btn" data-filter="Electrical Part">Electrical</button>
+    </div>
+<div class = "catalog-container">
+<!--Cat_grid-->
+    <div class="part-card" data-category="Engine Part">
+    <div class="card-image-placeholder"><i class="fas fa-cogs"></i></div>
+    <h3 class="part-title">V8 Spark Plugs (Set of 8)</h3>
+    <p class="part-price">$45.00</p>
+    <button class="view-btn" onclick="openModal('V8 Spark Plugs (Set of 8)', 'Engine Part', '$45.00', 'High-performance iridium spark plugs designed for maximum combustion efficiency. Fits most modern V8 engines.', 'In Stock')">View Details</button>
+</div>
+
+    <div class="part-card" data-category="Brake Part">
+    <div class="card-image-placeholder"><i class="fas fa-circle-notch"></i></div>
+    <h3 class="part-title">Ceramic Brake Pads</h3>
+    <p class="part-price">$65.99</p>
+    <button class="view-btn" onclick="openModal('Ceramic Brake Pads', 'Brake Part', '$65.99', 'Low-dust ceramic brake pads for quiet stopping power and long life. Includes hardware kit.', 'In Stock')">View Details</button>
+</div>
+    <div class="part-card" data-category="Electrical Part">
+    <span class="out-of-stock-badge">Out of Stock</span>
+    <div class="card-image-placeholder"><i class="fas fa-car-battery"></i></div>
+    <h3 class="part-title">12V Car Battery</h3>
+    <p class="part-price">$120.00</p>
+    <button class="view-btn" onclick="openModal('12V Car Battery', 'Electrical Part', '$120.00', 'Reliable 12V starting battery with 650 Cold Cranking Amps (CCA) for extreme weather.', 'Out of Stock')">View Details</button>
+</div>
+    <div class="part-card" data-category="Interior Part">
+    <div class="card-image-placeholder"><i class="fas fa-chair"></i></div>
+    <h3 class="part-title">Leather Seat Covers</h3>
+    <p class="part-price">$199.50</p>
+    <button class="view-btn" onclick="openModal('Leather Seat Covers', 'Interior Part', '$199.50', 'Premium synthetic leather seat covers. Waterproof, easy to install, and durable.', 'In Stock')">View Details</button>
+</div>
+    <div class="part-card" data-category="Chassis Part">
+    <div class="card-image-placeholder"><i class="fas fa-compress-arrows-alt"></i></div>
+    <h3 class="part-title">Front Suspension Strut</h3>
+    <p class="part-price">$85.00</p>
+    <button class="view-btn" onclick="openModal('Front Suspension Strut', 'Chassis Part', '$85.00', 'OEM replacement front strut assembly to restore original ride height and control.', 'In Stock')">View Details</button>
+</div>
+<!--Pop up section On view details button-->
+    <div id="productModal" class="modal">
+    <div class="modal-content">
+        <span class="close-btn" onclick="closeModal()">&times;</span>
+        <div class="modal-header">
+            <h2 id="modalTitle">Part Name</h2>
+            <span id="modalCategory" class="badge">Category</span>
+        </div>
+        <p id="modalDesc" class="modal-desc">Part description goes here.</p>
+
+        <div class="modal-footer">
+            <div>
+                <h3 id="modalPrice" class="modal-price">$0.00</h3>
+                <p id="modalStock" class="stock-status">In Stock</p>
+            </div>
+            <button class="add-cart-btn" onclick="addToCart()">Add to Cart <i class="fas fa-cart-plus"></i></button>
+        </div>
+    </div>
+</div>
+</div>
+<!-- script for filters an pop up details-->
+<script>
+    const filterBtns = document.querySelectorAll('.filter-btn');
+    const partCards = document.querySelectorAll('.part-card');
+
+    filterBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+            filterBtns.forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+
+            const filterValue = btn.getAttribute('data-filter');
+            partCards.forEach(card => {
+                if (filterValue === 'all' || card.getAttribute('data-category') === filterValue) {
+                    card.style.display = 'block';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        });
+    });
+
+    const modal = document.getElementById('productModal');
+
+    function openModal(title, category, price, desc, stock) {
+        document.getElementById('modalTitle').innerText = title;
+        document.getElementById('modalCategory').innerText = category;
+        document.getElementById('modalPrice').innerText = price;
+        document.getElementById('modalDesc').innerText = desc;
+
+        const stockElement = document.getElementById('modalStock');
+        stockElement.innerText = stock;
+        stockElement.style.color = (stock === 'In Stock') ? '#2ecc71' : '#e74c3c';
+
+        modal.style.display = 'flex';
+    }
+
+    function closeModal() {
+        modal.style.display = 'none';
+    }
+
+    window.onclick = function(event) {
+        if (event.target === modal) {
+            closeModal();
+        }
+    }
+
+    let cartCount = 0;
+    function addToCart() {
+        if(document.getElementById('modalStock').innerText === 'Out of Stock'){
+            alert("Sorry, this item is currently out of stock!");
+            return;
+        }
+        cartCount++;
+        document.querySelector('.cart-badge').innerText = cartCount;
+        closeModal();
+    }
 </script>
 </body>
 </html>
