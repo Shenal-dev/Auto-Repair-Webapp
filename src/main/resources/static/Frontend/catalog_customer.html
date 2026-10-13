@@ -40,7 +40,7 @@
                     </ul>
                 </li>
             </ul>
-
+            <!--seacrh bar-->
             <form class="d-flex mx-auto w-50">
                 <input class="form-control me-2 rounded-pill" type="search" placeholder="Search..." aria-label="Search"/>
                 <button class="btn btn-outline-light rounded-pill px-4" type="submit">Search</button>
@@ -263,7 +263,7 @@
         // Send it to the modal HTML
         openModal(title, category, price, desc, stockStatus);
     }
-    // 1. Physically pushes the data into the HTML and shows the box
+    // pushes the data into the HTML and shows the box
     function openModal(title, category, price, desc, stockStatus) {
         document.getElementById('modalTitle').innerText = title;
         document.getElementById('modalCategory').innerText = category;
@@ -275,12 +275,12 @@
         document.getElementById('productModal').style.display = 'flex';
     }
 
-    // 2. Hides the box when you click the 'X'
+    // Hides the box when you click the 'X'
     function closeModal() {
         document.getElementById('productModal').style.display = 'none';
     }
 
-    // 3. (Bonus) Hides the box if you click anywhere outside of it
+    // Hides the box if you click anywhere outside of it
     window.onclick = function(event) {
         const modal = document.getElementById('productModal');
         if (event.target === modal) {
